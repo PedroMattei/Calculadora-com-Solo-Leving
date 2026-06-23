@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Solo Leveling</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2f2f2f;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://gqcanimes.com.br/wp-content/uploads/2025/06/Solo-Leveling-anime-mais-assistido-Crunchyroll-1250x703.webp');
+            background-size: cover;
+            background-position: center;
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo translúcido escuro */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+            width: 350px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #9b59b6; /* Cor roxa que remete ao tema de Solo Leveling */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            font-size: 1.5em;
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 2px solid #9b59b6;
+            border-radius: 10px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        input[type="button"] {
+            font-size: 1.5em;
+            padding: 20px;
+            margin: 5px 0;
+            border: 2px solid #9b59b6;
+            border-radius: 10px;
+            background-color: #8e24aa; /* Roxo escuro */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #7b1fa2; /* Roxo mais claro para o hover */
+        }
+
+        input[type="button"]:active {
+            background-color: #6a0080; /* Roxo mais escuro para o clique */
+        }
+
+        .clear-btn {
+            background-color: #e64a19; /* Laranja para o botão de limpar */
+        }
+
+        .equal-btn {
+            background-color: #ff5722; /* Cor destacada para o botão igual */
+        }
+
+        .result {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #9b59b6;
+            margin-top: 15px;
+        }
+
+    </style>
+
+    <script>
+        let currentInput = "";
+
+        function updateDisplay(value) {
+            document.calc.display.value = value;
+        }
+
+        function appendValue(value) {
+            currentInput += value;
+            updateDisplay(currentInput);
+        }
+
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput).toString();
+                updateDisplay(currentInput);
+            } catch (e) {
+                updateDisplay("Erro");
+                currentInput = "";
+            }
+        }
+
+        function clearDisplay() {
+            currentInput = "";
+            updateDisplay(currentInput);
+        }
+
+        function deleteLastCharacter() {
+            currentInput = currentInput.slice(0, -1);
+            updateDisplay(currentInput);
+        }
+    </script>
+
+</head>
+<body>
+    <form name="calc" action="">
+        <h1>Calculadora - Solo Leveling</h1>
+
+        <input type="text" name="display" value="" placeholder="0" size="12" disabled>
+
+        <div class="button-container">
+            <input type="button" value="7" onclick="appendValue('7')">
+            <input type="button" value="8" onclick="appendValue('8')">
+            <input type="button" value="9" onclick="appendValue('9')">
+            <input type="button" value="/" onclick="appendValue('/')">
+
+            <input type="button" value="4" onclick="appendValue('4')">
+            <input type="button" value="5" onclick="appendValue('5')">
+            <input type="button" value="6" onclick="appendValue('6')">
+            <input type="button" value="*" onclick="appendValue('*')">
+
+            <input type="button" value="1" onclick="appendValue('1')">
+            <input type="button" value="2" onclick="appendValue('2')">
+            <input type="button" value="3" onclick="appendValue('3')">
+            <input type="button" value="-" onclick="appendValue('-')">
+
+            <input type="button" value="0" onclick="appendValue('0')">
+            <input type="button" value="." onclick="appendValue('.')">
+            <input type="button" value="C" class="clear-btn" onclick="clearDisplay()">
+            <input type="button" value="+" onclick="appendValue('+')">
+
+            <input type="button" value="←" class="clear-btn" onclick="deleteLastCharacter()">
+            <input type="button" value="=" class="equal-btn" onclick="calculateResult()">
+        </div>
+    </form>
+</body>
+</html>
